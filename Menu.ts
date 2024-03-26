@@ -1,12 +1,14 @@
 import readlinesync = require("readline-sync");
+import { colors } from "./src/util/Colors";
 
 export function main(){
 
     let opcao: number;
 
     while(true){
-
-        console.log("\n\n.-~*´¨`*·~-.¸_Branco do Basil_,.-~*´¨`*·~-.\n\n");
+        
+        console.log(colors.bg.black, colors.fg.magenta,
+            "\n\n.-~*´¨`*·~-.¸_Branco do Basil_,.-~*´¨`*·~-.\n\n");
         console.log("1:Criar conta::::::::::::::::::::::::::๑۩۩๑");
         console.log("2:Listar todas as contas:::::::::::::::๑۩۩๑");
         console.log("3:Buscar conta por numero::::::::::::::๑۩۩๑");
@@ -16,6 +18,7 @@ export function main(){
         console.log("7:Depositar::::::::::::::::::::::::::::๑۩۩๑");
         console.log("8:Tranferir valores entre contas:::::::๑۩۩๑");
         console.log("9:Sair:::::::::::::::::::::::::::::::::๑۩۩๑");
+        console.log(" ", colors.reset);
 
         opcao = readlinesync.questionInt("\nEntre com a opcao desejada: ");
 
@@ -25,41 +28,64 @@ export function main(){
 
         switch(opcao){
             case 1:
-                console.log("\nCriar conta");
+                console.log(colors.fg.whitestrong,
+                    "\nCriar conta",colors.reset);
+                    keyPress()
                 break;
             case 2:
-                console.log("\nListar todas as contas");
+                console.log(colors.fg.whitestrong,
+                    "\nListar todas as contas",colors.reset);
+                    keyPress()
                 break;
             case 3:
-                console.log("\nBuscar conta por numero");
+                console.log(colors.fg.whitestrong,
+                    "\nBuscar conta por numero",colors.reset);
+                    keyPress()
                 break;
             case 4:
-                console.log("\nAtualizar dados da conta");
+                console.log(colors.fg.whitestrong,
+                    "\nAtualizar dados da conta",colors.reset);
+                    keyPress()
                 break;
             case 5:
-                console.log("\nApagar conta");
+                console.log(colors.fg.whitestrong,
+                    "\nApagar conta",colors.reset);
+                    keyPress()
                 break;
             case 6:
-                console.log("\nSacar");
+                console.log(colors.fg.whitestrong,
+                    "\nSacar",colors.reset);
+                    keyPress()
                 break;
             case 7:
-                console.log("\nDepositar");
+                console.log(colors.fg.whitestrong,
+                    "\nDepositar",colors.reset);
+                    keyPress()
                 break;
             case 8:
-                console.log("\nTranferir valores entre contas");
+                console.log(colors.fg.whitestrong,
+                    "\nTranferir valores entre contas",colors.reset);
+                    keyPress()
                 break;
             case 9:
-                console.log("\nSair");
+                console.log(colors.fg.whitestrong,
+                    "\nSair",colors.reset);
+                    keyPress()
                 break;
             default:
-                console.log("\nInsira uma opcao valida\n");
+                console.log(colors.fg.red,
+                    "\nInsira uma opcao valida\n",colors.reset);
+                keyPress(); 
                 break;
         }
     
     }
 
-
-
+    function keyPress(): void{
+        console.log(colors.reset, "");
+        console.log("\nPressione enter para continuar...");
+        readlinesync.prompt();
+    }
 }
 
 main();
