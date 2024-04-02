@@ -11,22 +11,18 @@ export function main(){
     let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
 
-
-
     const tiposContas = ['Conta Corrente', 'Conta Poupanca'];
 
 
-     const cc1: ContaCorrente = new ContaCorrente(1, 456, 1, "Espionildo", 500000, 1000);
+     const cc1: ContaCorrente = new ContaCorrente(1, 456, 1, "Coelho", 5000, 1000);
      contas.cadastrar(cc1);
 
-     const cp1: ContaPoupanca = new ContaPoupanca(2, 123, 2, "Jaca", 1000, 10);
+     const cp1: ContaPoupanca = new ContaPoupanca(2, 123, 2, "Gato", 1000, 10);
      contas.cadastrar(cp1);
-
-
 
     while(true){
 
-        console.log("\n\n.-~*´¨`*·~-.¸_Branco do Basil_,.-~*´¨`*·~-.\n");
+        console.log(colors.fg.whitestrong,"\n\n.-~*´¨`*·~-.¸_Branco do Barril_,.-~*´¨`*·~-.\n");
         console.log("1:Criar conta::::::::::::::::::::::::::๑۩۩๑");
         console.log("2:Listar todas as contas:::::::::::::::๑۩۩๑");
         console.log("3:Buscar conta por numero::::::::::::::๑۩۩๑");
@@ -36,12 +32,13 @@ export function main(){
         console.log("7:Depositar::::::::::::::::::::::::::::๑۩۩๑");
         console.log("8:Tranferir valores entre contas:::::::๑۩۩๑");
         console.log("9:Buscar conta por Titular:::::::::::::๑۩۩๑");
-        console.log("0:Sair:::::::::::::::::::::::::::::::::๑۩۩๑");
+        console.log("0:Sair:::::::::::::::::::::::::::::::::๑۩۩๑",colors.reset);
 
         opcao = readlinesync.questionInt("\nEntre com a opcao desejada: ");
 
-        if( opcao == 9 ){
-            process.exit(0)   
+        if( opcao == 0 ){
+            sobre();
+            process.exit(0)
         }
 
         switch(opcao){
@@ -189,5 +186,9 @@ export function main(){
     }
 
 }
-
+export function sobre(): void{
+    console.log("\n【ツ】About【ツ】");
+    console.log("\nProjeto desenvolvido por: Daniele C Ferreira");
+    console.log("\nhttps://github.com/daniele0118");
+}
 main();
