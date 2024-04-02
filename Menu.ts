@@ -8,7 +8,7 @@ export function main(){
     //Instância da classe ContaController
     let contas: ContaController = new ContaController();
 
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
 
 
@@ -26,7 +26,7 @@ export function main(){
 
     while(true){
 
-        console.log("\n\n.-~*´¨`*·~-.¸_Branco do Basil_,.-~*´¨`*·~-.\n\n");
+        console.log("\n\n.-~*´¨`*·~-.¸_Branco do Basil_,.-~*´¨`*·~-.\n");
         console.log("1:Criar conta::::::::::::::::::::::::::๑۩۩๑");
         console.log("2:Listar todas as contas:::::::::::::::๑۩۩๑");
         console.log("3:Buscar conta por numero::::::::::::::๑۩۩๑");
@@ -35,7 +35,8 @@ export function main(){
         console.log("6:Sacar::::::::::::::::::::::::::::::::๑۩۩๑");
         console.log("7:Depositar::::::::::::::::::::::::::::๑۩۩๑");
         console.log("8:Tranferir valores entre contas:::::::๑۩۩๑");
-        console.log("9:Sair:::::::::::::::::::::::::::::::::๑۩۩๑");
+        console.log("9:Buscar conta por Titular:::::::::::::๑۩۩๑");
+        console.log("0:Sair:::::::::::::::::::::::::::::::::๑۩۩๑");
 
         opcao = readlinesync.questionInt("\nEntre com a opcao desejada: ");
 
@@ -117,7 +118,7 @@ export function main(){
                 keyPress();
                 break;
             case 5:
-                console.log(colors.fg.whitestrong,"\nApagar conta");
+                console.log(colors.fg.whitestrong,"\nApagar conta", colors.reset);
                 console.log("Digite o número da conta: ");
                 numero = readlinesync.questionInt("");
 
@@ -127,18 +128,50 @@ export function main(){
             case 6:
                 console.log("\nSacar");
 
+                console.log("Digite o número da conta: ");
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o valor do saque (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.sacar(numero,valor);
+
                 keyPress();
                 break;
             case 7:
                 console.log("\nDepositar");
+
+                console.log("Digite o número da conta: ");
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o valor do deposito (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.depositar(numero,valor);
                 keyPress();
                 break;
             case 8:
                 console.log("\nTranferir valores entre contas");
+                
+                console.log("Digite o número da conta origem: ");
+                numero = readlinesync.questionInt("");
+
+                console.log("Digite o número da conta destino: ");
+                numeroDestino = readlinesync.questionInt("");
+
+                console.log("Digite o valor do deposito (R$): ");
+                valor = readlinesync.questionFloat("");
+
+                contas.transferir(numero, numeroDestino, valor);
                 keyPress();
                 break;
             case 9:
-                console.log("\nSair");
+                console.log(colors.fg.whitestrong,"\nConsultar conta por titular");
+                
+                console.log("Insira o nome de titular da conta: ");
+                titular = readlinesync.question("");
+
+                contas.procurarPorTitular(titular);
                 keyPress();
                 break;
             default:

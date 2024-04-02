@@ -4,6 +4,8 @@ import { colors } from "../util/Colors";
 
 export class ContaController implements ContaRepository{
 
+
+
     private listaContas: Array<Conta> = new Array<Conta>();
 
     numero: number = 0;
@@ -51,14 +53,49 @@ export class ContaController implements ContaRepository{
         }
     }
 
-    sacar(numero: number, valor: number): void {
+    
+    procurarPorTitular(titular: string) {
+        let listaContasPorTitular = this.listaContas.filter( c => 
+            c.titular.toLocaleUpperCase().includes(titular.toLocaleUpperCase()))
 
+            for (let conta of listaContasPorTitular){
+                conta.visualizar();
+            }
+    }
+    
+    sacar(numero: number, valor: number): void {
+        let buscaConta = this.buscarNoArray(numero);
+
+        if(buscaConta !== null){
+            if(buscaConta.sacar(valor) === true)
+            console.log(`O saque na conta número ${numero} foi efetuado com êxito!`);
+        }else{
+            console.log("\nConta não encontrada");
+        }
     }
     depositar(numero: number, valor: number): void {
+        let buscaConta = this.buscarNoArray(numero);
 
+        if(buscaConta !== null){
+            buscaConta.depositar(valor)
+            console.log(`O depósito na conta número ${numero} foi efetuado com êxito!`);
+        }else{
+            console.log("\nConta não encontrada");
+        }
     }
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
+        let contaOrigem = this.buscarNoArray(numeroOrigem);
+        let contaDestino = this.buscarNoArray(numeroDestino);
 
+        if(contaOrigem !== null && contaDestino !== null){
+            if(contaOrigem.sacar(valor) === true){
+            contaDestino.depositar(valor);
+            console.log(`A transferência da conta número ${numeroOrigem} para a conta ${numeroDestino} 
+            foi efetuada com êxito!`);
+            }
+        }else{
+            console.log("\nConta origem e/ou conta de destino não foram encontrada(s)");
+        }
     }
 
     //Métodos auxiliares
