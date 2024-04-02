@@ -117,7 +117,7 @@ export function main(){
                 keyPress();
                 break;
             case 5:
-                console.log(colors.fg.whitestrong,"\nApagar conta");
+                console.log(colors.fg.whitestrong,"\nApagar conta", colors.reset);
                 console.log("Digite o número da conta: ");
                 numero = readlinesync.questionInt("");
 
